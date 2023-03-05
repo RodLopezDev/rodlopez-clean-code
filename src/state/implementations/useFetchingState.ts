@@ -3,21 +3,21 @@ import IFetchingState from "./IFetchingState";
 
 const useFetchingState = function useFetchingState<T>(): IFetchingState<T> {
   const [state, setState] = useState<{
-    loading: boolean;
-    error: boolean;
+    isFetching: boolean;
+    hasError: boolean;
     errorMessage: string;
     data: T | null;
   }>({
-    loading: false,
-    error: false,
+    isFetching: false,
+    hasError: false,
     data: null,
     errorMessage: "",
   });
 
   const init = () => {
     setState({
-      loading: true,
-      error: false,
+      isFetching: true,
+      hasError: false,
       data: null,
       errorMessage: "",
     });
@@ -25,8 +25,8 @@ const useFetchingState = function useFetchingState<T>(): IFetchingState<T> {
 
   const success = (data: T) => {
     setState({
-      loading: false,
-      error: false,
+      isFetching: false,
+      hasError: false,
       data,
       errorMessage: "",
     });
@@ -34,8 +34,8 @@ const useFetchingState = function useFetchingState<T>(): IFetchingState<T> {
 
   const error = (message?: string) => {
     setState({
-      loading: false,
-      error: true,
+      isFetching: false,
+      hasError: true,
       data: null,
       errorMessage: message || "",
     });
@@ -43,18 +43,15 @@ const useFetchingState = function useFetchingState<T>(): IFetchingState<T> {
 
   const reset = () => {
     setState({
-      loading: false,
-      error: false,
+      isFetching: false,
+      hasError: false,
       data: null,
       errorMessage: "",
     });
   };
 
   return {
-    isFetching: state.loading,
-    hasError: state.error,
-    data: state.data,
-    errorMessage: "",
+    ...state,
     on: { init, success, error, reset },
   };
 };
