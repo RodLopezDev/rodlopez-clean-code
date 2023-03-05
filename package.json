@@ -2,6 +2,12 @@
   "name": "@rodlopez/clean-code",
   "version": "1.0.2",
   "description": "",
+  "keywords": [
+    "react",
+    "clean code",
+    "architecture",
+    "good practices"
+  ],
   "scripts": {
     "build": "rollup -c",
     "start": "rollup -c -w",
