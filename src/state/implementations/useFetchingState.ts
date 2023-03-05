@@ -1,7 +1,7 @@
 import { useState } from "react";
 import IFetchingState from "./IFetchingState";
 
-const useFetchingstore = function useFetchingstore<T>(): IFetchingState<T> {
+const useFetchingState = function useFetchingState<T>(): IFetchingState<T> {
   const [state, setState] = useState<{
     loading: boolean;
     error: boolean;
@@ -59,4 +59,4 @@ const useFetchingstore = function useFetchingstore<T>(): IFetchingState<T> {
   };
 };
 
-export default useFetchingstore;
+export default useFetchingState;

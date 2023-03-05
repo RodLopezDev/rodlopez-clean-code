@@ -11,4 +11,4 @@ export { default as useOnMountAdapter } from "./adapters/useOnMountAdapter";
 
 // STATE CASES
 export type { default as IFetchingState } from "./state/implementations/IFetchingState";
-export { default as useFetchingStore } from "./state/implementations/useFetchingStore";
+export { default as useFetchingState } from "./state/implementations/useFetchingState";
