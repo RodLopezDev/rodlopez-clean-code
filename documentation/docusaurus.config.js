@@ -15,9 +15,9 @@ const config = {
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   // Local deploy
-  baseUrl: "/docs/",
-  // GHPages deploy
   //baseUrl: "/docs/",
+  // GHPages deploy
+  baseUrl: "/rodlopez-clean-code/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
