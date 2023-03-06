@@ -1,13 +1,13 @@
-import { ReactElement } from "react";
+import * as React from "react";
 
 interface Props<T> {
   data: T | null;
   error: boolean;
   loading: boolean;
-  RenderError: ReactElement;
-  RenderLoading: ReactElement;
-  RenderEmpty?: ReactElement;
-  Render: (data: T) => ReactElement;
+  RenderError: React.ReactElement;
+  RenderLoading: React.ReactElement;
+  RenderEmpty?: React.ReactElement;
+  Render: (data: T) => React.ReactElement;
 }
 
 const AsyncFetchRender = function AsyncFetchRender<T>({

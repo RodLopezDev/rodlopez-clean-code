@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import * as React from "react";
 
 const useOnMountAdapter = function useOnMountAdapter(
   prop: () => Promise<void> | void
 ) {
-  useEffect(() => {
+  React.useEffect(() => {
     prop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

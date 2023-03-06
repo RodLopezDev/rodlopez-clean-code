@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import * as React from "react";
 
 const useDependenciesAdapter = function useDependenciesAdapter(
   prop: () => Promise<void> | void,
   dependencies: any[] = []
 ) {
-  useEffect(() => {
+  React.useEffect(() => {
     prop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
