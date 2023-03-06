@@ -1,29 +1,17 @@
-import * as React from "react";
-
-interface Props<T> {
-  data: T | null;
-  error: boolean;
-  loading: boolean;
-  RenderError: React.ReactElement;
-  RenderLoading: React.ReactElement;
-  RenderEmpty?: React.ReactElement;
-  Render: (data: T) => React.ReactElement;
-}
-
 const AsyncFetchRender = function AsyncFetchRender<T>({
   data,
-  error,
-  loading,
+  hasError,
+  isFetching,
   Render,
-  RenderError,
-  RenderLoading,
+  RHasError,
+  RIsFetching,
   RenderEmpty,
-}: Props<T>) {
-  if (loading) {
-    return RenderLoading;
+}: AsyncFetchRenderProps<T>) {
+  if (isFetching) {
+    return RIsFetching;
   }
-  if (error) {
-    return RenderError;
+  if (hasError) {
+    return RHasError;
   }
   if (data) {
     return Render(data);
