@@ -3,15 +3,15 @@ const AsyncFetchRender = function AsyncFetchRender<T>({
   hasError,
   isFetching,
   Render,
-  RHasError,
-  RIsFetching,
+  RenderError,
+  RenderLoading,
   RenderEmpty,
 }: AsyncFetchRenderProps<T>) {
   if (isFetching) {
-    return RIsFetching;
+    return RenderLoading;
   }
   if (hasError) {
-    return RHasError;
+    return RenderError;
   }
   if (data) {
     return Render(data);

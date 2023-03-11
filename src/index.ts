@@ -11,6 +11,7 @@ export type { default as IState } from "./state/IState";
 export { default as useDependenciesAdapter } from "./adapters/useDependenciesAdapter";
 export { default as useEventAdapter } from "./adapters/useEventAdapter";
 export { default as useOnMountAdapter } from "./adapters/useOnMountAdapter";
+export { default as useDebouncedEventAdapter } from "./adapters/useDebouncedEventAdapter";
 
 // STATE CASES
 export type { default as IFetchingState } from "./state/implementations/IFetchingState";

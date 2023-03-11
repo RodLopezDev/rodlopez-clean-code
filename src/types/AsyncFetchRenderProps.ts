@@ -6,9 +6,9 @@ interface AsyncFetchRenderProps<T> {
   /** flag */
   isFetching: boolean;
   /** function that render component when fetch is wrong */
-  RHasError: React.ReactElement;
+  RenderError: React.ReactElement;
   /** function that render component when fetch is working */
-  RIsFetching: React.ReactElement;
+  RenderLoading: React.ReactElement;
   /** function that render component when fetch finished but data is empty */
   RenderEmpty?: React.ReactElement;
   /** function that render component when fetch finished with data */
