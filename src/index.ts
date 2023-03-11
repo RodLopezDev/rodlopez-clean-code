@@ -12,6 +12,12 @@ export type { UseCaseRunner, UseCaseRunnerWithParams } from "./application";
 export { default as useEventAdapter } from "./adapters/useEventAdapter";
 export { default as useEffectdapter } from "./adapters/useEffectdapter";
 
+// EXCEPTIONS
+export { default as BussinessException } from "./utils/BussinessException";
+export { default as DebugException } from "./utils/DebugException";
+export { default as RepositoryException } from "./utils/RepositoryException";
+export { HandleCleanException } from "./utils";
+
 // @IMPLEMENTATIONS
 
 // FETCHING STORE
