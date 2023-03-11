@@ -1,8 +1,8 @@
-import { useState } from "react";
+import * as React from "react";
 import IFetchingState from "./IFetchingState";
 
 const useFetchingState = function useFetchingState<T>(): IFetchingState<T> {
-  const [state, setState] = useState<{
+  const [state, setState] = React.useState<{
     isFetching: boolean;
     hasError: boolean;
     errorMessage: string;
@@ -14,11 +14,11 @@ const useFetchingState = function useFetchingState<T>(): IFetchingState<T> {
     errorMessage: "",
   });
 
-  const init = () => {
+  const init = (dontRestartData?: boolean) => {
     setState({
       isFetching: true,
       hasError: false,
-      data: null,
+      data: !!dontRestartData ? state.data : null,
       errorMessage: "",
     });
   };
