@@ -10,7 +10,7 @@ export type { UseCaseRunner, UseCaseRunnerWithParams } from "./application";
 
 // ADAPTERS
 export { default as useEventAdapter } from "./adapters/useEventAdapter";
-export { default as useDependenciesAdapter } from "./adapters/useEffectdapter";
+export { default as useEffectdapter } from "./adapters/useEffectdapter";
 
 // @IMPLEMENTATIONS
 
