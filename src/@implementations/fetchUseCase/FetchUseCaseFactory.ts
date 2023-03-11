@@ -29,7 +29,7 @@ const FetchUseCaseFactory = function FetchUseCaseFactory<
         state.on.init();
         const oResponse = await callbackAction(repository)(data);
         state.on.success(oResponse as E);
-      } catch (error: any) {
+      } catch (error) {
         if (callbackError) {
           callbackError(state, new Error(error));
         }
