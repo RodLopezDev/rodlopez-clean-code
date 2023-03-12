@@ -6,7 +6,7 @@ type UseCaseEventAdapter<T = undefined> = T extends undefined
   ? UseCaseRunner
   : UseCaseRunnerWithParams<T>;
 
-const useEffectdapter = function useEffectdapter<T = undefined>(
+const useEffectAdapter = function useEffectAdapter<T = undefined>(
   usecase: UseCaseEventAdapter<T>,
   dependencies: any[] = [],
   initialValue: T | undefined = undefined
@@ -18,4 +18,4 @@ const useEffectdapter = function useEffectdapter<T = undefined>(
   return [usecase];
 };
 
-export default useEffectdapter;
+export default useEffectAdapter;
