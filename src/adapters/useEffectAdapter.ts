@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { UseCaseRunner, UseCaseRunnerWithParams } from "../application";
+import { UseCaseRunner, UseCaseRunnerWithParams } from "../application/types";
 
 type UseCaseEventAdapter<T = undefined> = T extends undefined
   ? UseCaseRunner

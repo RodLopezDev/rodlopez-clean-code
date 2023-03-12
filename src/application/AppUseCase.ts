@@ -1,6 +1,6 @@
 import IState from "../state/IState";
 import IRepository from "../repository/IRepository";
-import { UseCaseRunner, UseCaseRunnerWithParams } from "./index";
+import { UseCaseRunner, UseCaseRunnerWithParams } from "./types";
 
 export type IBaseRepository = IRepository | IRepository[];
 
