@@ -5,10 +5,7 @@ type ICallbackFunction<E, R, D> = (
   repository: R
 ) => D extends undefined ? () => Promise<E> : (data: D) => Promise<E>;
 
-type ICallbackErrorFunction<E> = (
-  state: IFetchingState<E>,
-  error: Error
-) => void;
+type ICallbackErrorFunction<E> = (state: IFetchingState<E>, error: any) => void;
 
 // E: Entity
 // R: Repository
@@ -31,8 +28,10 @@ const FetchUseCaseFactory = function FetchUseCaseFactory<
         state.on.success(oResponse as E);
       } catch (error) {
         if (callbackError) {
-          callbackError(state, new Error(error));
+          callbackError(state, error);
+          return;
         }
+        throw error;
       }
     };
 };
