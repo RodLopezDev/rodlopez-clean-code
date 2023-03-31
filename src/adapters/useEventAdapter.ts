@@ -7,7 +7,7 @@ type UseCaseEventAdapter<T = undefined> = T extends undefined
 const useEventAdapter = function useEventAdapter<T = undefined>(
   usecase: UseCaseEventAdapter<T>
 ) {
-  const runnable = (data?: T) => {
+  const runnable = (data?: T): void | Promise<void> => {
     if (!!data) {
       usecase(data);
     } else {
