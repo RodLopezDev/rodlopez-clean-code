@@ -50,9 +50,11 @@ const useFetchingState = function useFetchingState<T>(): IFetchingState<T> {
     });
   };
 
+  const getState = () => state;
+
   return {
     ...state,
-    on: { init, success, error, reset },
+    on: { init, success, error, reset, getState },
   };
 };
 
