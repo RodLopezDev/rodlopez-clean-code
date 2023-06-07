@@ -26,6 +26,7 @@ export { HandleCleanException } from "./utils";
 // @IMPLEMENTATIONS
 
 // FETCHING STORE
+export type { BaseFetchingState } from "./@implementations/fetchStore/IFetchingState";
 export type { default as IFetchingState } from "./@implementations/fetchStore/IFetchingState";
 export { default as useFetchingState } from "./@implementations/fetchStore/useFetchingState";
 

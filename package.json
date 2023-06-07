@@ -1,6 +1,6 @@
 {
   "name": "@rodlopez/clean-code",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "description": "",
   "keywords": [
     "react",
@@ -19,7 +19,7 @@
     "type": "git",
     "url": "git+https://github.com/RodLopezDev/rodlopez-clean-code.git"
   },
-  "author": "RatherLabsRodLopez",
+  "author": "RodLopezDev",
   "license": "ISC",
   "peerDependencies": {
     "react": "^18.2.0",
