@@ -1,9 +1,15 @@
 {
-  "name": "@rodlopez/react-form-handler",
+  "name": "@rodlopez/clean-code",
   "version": "0.0.1",
-  "description": "Simple form handler",
+  "description": "Clean Code Toolkit",
   "keywords": [
-    "react"
+    "react",
+    "clean",
+    "code",
+    "toolkit",
+    "clean code",
+    "architecture",
+    "good practices"
   ],
   "scripts": {
     "start:dev": "npx nodemon server/index.ts",
@@ -46,10 +52,10 @@
   "jsnext:main": "dist/index.es.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RodLopezDev/rodlopez-react-form-handler.git"
+    "url": "git+https://github.com/RodLopezDev/rodlopez-clean-code.git"
   },
   "bugs": {
-    "url": "https://github.com/RodLopezDev/rodlopez-react-form-handler/issues"
+    "url": "https://github.com/RodLopezDev/rodlopez-clean-code/issues"
   },
-  "homepage": "https://github.com/RodLopezDev/rodlopez-react-form-handler#readme"
+  "homepage": "https://github.com/RodLopezDev/rodlopez-clean-code#readme"
 }
