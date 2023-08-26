@@ -5,6 +5,7 @@ interface Props<ENTITY, ERROR = string> {
   initialFetching?: boolean;
   state: EntityState<ENTITY, ERROR>;
   RenderLoading: ReactElement;
+  RenderNone?: ReactElement;
   Render: (entity: ENTITY) => ReactElement;
   RenderError: (errorObject: ERROR) => ReactElement;
 }
@@ -12,7 +13,14 @@ interface Props<ENTITY, ERROR = string> {
 const AsyncRequestRender = function AsyncRequestRender<ENTITY, ERROR = string>(
   props: Props<ENTITY, ERROR>
 ) {
-  const { state, Render, RenderError, RenderLoading, initialFetching } = props;
+  const {
+    state,
+    Render,
+    RenderError,
+    RenderLoading,
+    RenderNone,
+    initialFetching,
+  } = props;
   if (state.isFetching) {
     return RenderLoading;
   }
@@ -23,7 +31,7 @@ const AsyncRequestRender = function AsyncRequestRender<ENTITY, ERROR = string>(
     if (!!initialFetching) {
       throw new Error("ERROR_PROCESSING");
     }
-    return RenderLoading;
+    return RenderNone ?? RenderLoading;
   }
   return Render(state.data);
 };
