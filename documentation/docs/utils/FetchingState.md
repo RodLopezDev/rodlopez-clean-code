@@ -20,7 +20,7 @@ interface IExtendedFetchingState extends IFetchingState<string> {
 const useExtendedFetchingState = (): IExtendedFetchingState => {
   const [flag, setState] = useState(false);
   // highlight-next-line
-  const fetchingState = useFetchingState<string>();
+  const fetchingState = useCleanFetching<string>();
   return { ...fetchingState, flag };
 };
 ```
