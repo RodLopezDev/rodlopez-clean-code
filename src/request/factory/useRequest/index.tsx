@@ -1,29 +1,30 @@
+import { useEffect } from "react";
+
 import {
   generateErrorMiddleware,
   generateSigleMiddleware,
   generateSuccessMiddleware,
-} from "../utils/middlewares";
-import EntityState from "../types/EntityState";
-import RequestState from "../types/RequestState";
-import RequestStateMiddleware from "../types/RequestStateMiddleware";
+} from "../../utils/middlewares";
 
-import useTraceableState from "../../state/useTraceableState";
-import { useEffect } from "react";
+import EntityState from "../../types/EntityState";
+import RequestState from "../../types/RequestState";
+import useTraceableState from "../../../state/useTraceableState";
+import RequestStateMiddleware from "../../types/RequestStateMiddleware";
 
-interface Props<ENTITY, ERROR = string> {
-  method?: Promise<ENTITY>;
+interface BaseProp<ENTITY, ERROR = string> {
   isFetching?: boolean;
+  method?: Promise<ENTITY>;
   middlewares?: RequestStateMiddleware<ENTITY, ERROR>;
 }
 
 const useRequest = function useRequest<ENTITY, ERROR = string>(
-  props: Props<ENTITY, ERROR> = {}
+  props: BaseProp<ENTITY, ERROR> = { isFetching: false }
 ): RequestState<ENTITY, ERROR> {
-  const { isFetching, method, middlewares } = props;
+  const { middlewares } = props;
 
   const [state, setState] = useTraceableState<EntityState<ENTITY, ERROR>>({
     data: null,
-    isFetching: !!method ? true : isFetching || false,
+    isFetching: !!props?.method ? true : props?.isFetching || false,
     isReady: false,
     hasError: false,
     errorObject: "" as ERROR,
@@ -110,8 +111,8 @@ const useRequest = function useRequest<ENTITY, ERROR = string>(
   };
 
   useEffect(() => {
-    if (method) {
-      traceAsync(method);
+    if (props.method) {
+      traceAsync(props.method);
     }
   }, []);
 

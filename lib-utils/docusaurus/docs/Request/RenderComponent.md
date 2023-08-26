@@ -7,21 +7,32 @@ sidebar_position: 2
 Este hook genera un objeto con métodos para seguimiento de una petición a servidor.
 
 ```tsx title="RequestComponent.tsx"
-import { FetchingComponent } from "@rodlopez/clean-code";
+import { RequestComponent } from "@rodlopez/clean-code";
 
-interface TypeOfResult {
+interface User {
   name: string;
   email: string;
 }
 
-const RequestComponent = () => {
+class Repository {
+  async getUser() {
+    return { ...mock };
+  }
+}
+
+const MyComponent = () => {
+  const repository = new Repository();
   return (
-    <FetchingComponent<TypeOfResult>
+    <RequestComponent<User>
+      method={repository.getUser()}
+      loading={<div>Cargando...</div>}
+      render={(user: User) => <div>{user?.name}</div>}
       error={(error: string) => <div>Error: {error}</div>}
-      render={(user: TypeOfResult) => <div>{user?.name}</div>}
     />
   );
 };
+
+export default MyComponent;
 ```
 
 :::warning Importante

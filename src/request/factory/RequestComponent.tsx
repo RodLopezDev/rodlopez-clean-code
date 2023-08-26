@@ -3,25 +3,27 @@ import useRequest from "./useRequest";
 import AsyncRequestRender from "./AsyncRequestRender";
 
 interface Props<ENTITY, ERROR = string> {
-  error?: (errorObject: ERROR) => ReactElement;
+  method: Promise<ENTITY>;
   render: (entity: ENTITY) => ReactElement;
+  loading?: ReactElement;
+  error?: (errorObject: ERROR) => ReactElement;
 }
 
 const RequestComponent = function RequestComponent<ENTITY, ERROR = string>(
   props: Props<ENTITY, ERROR>
 ) {
-  const { render, error } = props;
+  const { render, error, method, loading } = props;
   const request = useRequest<ENTITY, ERROR>({
-    isFetching: true,
+    method: Promise.resolve({} as ENTITY),
   });
-  const defaultError = () => <></>;
+  const defaultComponent = () => <></>;
   return (
     <AsyncRequestRender<ENTITY, ERROR>
       initialFetching
       request={request}
       Render={render}
-      RenderError={error || defaultError}
-      RenderLoading={<div>Cargando...</div>}
+      RenderError={error || defaultComponent}
+      RenderLoading={loading || defaultComponent()}
     />
   );
 };
