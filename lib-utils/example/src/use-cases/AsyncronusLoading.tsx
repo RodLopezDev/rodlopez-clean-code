@@ -1,6 +1,5 @@
 import { FC, useCallback, useEffect } from "react";
-import useCleanFetching from "../../../../src/fetching/factory/useCleanFetching";
-import AsyncRequestRender from "../../../../src/fetching/factory/AsyncRequestRender";
+import { useRequest, AsyncRequestRender } from "../../../../src/";
 
 import { delay } from "./utils";
 import { Pokemon } from "../Pokemon";
@@ -14,7 +13,7 @@ interface Props {
 }
 
 const AsyncronusLoading: FC<Props> = ({ delayTime, pokemonName }) => {
-  const request = useCleanFetching<Pokemon>();
+  const request = useRequest<Pokemon>();
 
   const handlePokemon = useCallback(async () => {
     await delay(delayTime || 0);
@@ -37,7 +36,7 @@ const AsyncronusLoading: FC<Props> = ({ delayTime, pokemonName }) => {
 
   return (
     <AsyncRequestRender<Pokemon>
-      state={request}
+      request={request}
       RenderNone={<BaseBox>Esperando para carga</BaseBox>}
       RenderLoading={<LoadingUI />}
       RenderError={(errorObject) => <div>{JSON.stringify(errorObject)}</div>}

@@ -3,7 +3,7 @@ import EntityState from "../types/EntityState";
 
 interface Props<ENTITY, ERROR = string> {
   initialFetching?: boolean;
-  state: EntityState<ENTITY, ERROR>;
+  request: EntityState<ENTITY, ERROR>;
   RenderLoading: ReactElement;
   RenderNone?: ReactElement;
   Render: (entity: ENTITY) => ReactElement;
@@ -14,26 +14,26 @@ const AsyncRequestRender = function AsyncRequestRender<ENTITY, ERROR = string>(
   props: Props<ENTITY, ERROR>
 ) {
   const {
-    state,
+    request,
     Render,
     RenderError,
     RenderLoading,
     RenderNone,
     initialFetching,
   } = props;
-  if (state.isFetching) {
+  if (request.isFetching) {
     return RenderLoading;
   }
-  if (state.hasError) {
-    return RenderError(state.errorObject);
+  if (request.hasError) {
+    return RenderError(request.errorObject);
   }
-  if (!state.data) {
+  if (!request.data) {
     if (!!initialFetching) {
       throw new Error("ERROR_PROCESSING");
     }
     return RenderNone ?? RenderLoading;
   }
-  return Render(state.data);
+  return Render(request.data);
 };
 
 export default AsyncRequestRender;

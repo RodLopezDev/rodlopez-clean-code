@@ -3,7 +3,7 @@ import {
   ErrorMiddleware,
   SingleMiddleware,
   SuccessMiddleware,
-} from "../types/FetchingStateMiddleware";
+} from "../types/RequestStateMiddleware";
 
 export const generateSigleMiddleware = (
   init?: SingleMiddleware | SingleMiddleware[] | undefined

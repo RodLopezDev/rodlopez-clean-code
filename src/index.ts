@@ -5,13 +5,9 @@ export type {
   ErrorMiddleware,
   SingleMiddleware,
   SuccessMiddleware,
-  FetchingStateMiddleware,
-} from "./fetching";
+  RequestStateMiddleware,
+} from "./request";
 
-export {
-  useCleanFetching,
-  FetchingComponent,
-  AsyncRequestRender,
-} from "./fetching";
+export { useRequest, RequestComponent, AsyncRequestRender } from "./request";
 
 export { useTraceableState } from "./state";

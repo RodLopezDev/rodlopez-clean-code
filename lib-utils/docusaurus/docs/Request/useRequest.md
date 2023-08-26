@@ -2,12 +2,12 @@
 sidebar_position: 1
 ---
 
-# useCleanFetching
+# useRequest
 
 Este hook genera un objeto con métodos para seguimiento de una petición a servidor.
 
 ```tsx title="RequestComponent.tsx"
-import { useCleanFetching } from "@rodlopez/clean-code";
+import { useRequest } from "@rodlopez/clean-code";
 
 interface TypeOfResult {
   name: string;
@@ -16,11 +16,10 @@ interface TypeOfResult {
 
 const RequestComponent = () => {
   // highlight-next-line
-  const state = useCleanFetching<TypeOfResult>();
-  .
-  .
-  .
-  return <div>{state.data?.name}</div>;
+  const request = useRequest<TypeOfResult>({
+    method: MockMethod<TypeOfResult>(),
+  });
+  return <div>{request.data?.name}</div>;
 };
 ```
 
@@ -28,7 +27,7 @@ Ud. puede implementar este hook y realizare el seguimiento manualmente como en e
 
 ```tsx title="RequestComponent.tsx"
 import { useEffect, useCallback } from "react";
-import { useCleanFetching } from "@rodlopez/clean-code";
+import { useRequest } from "@rodlopez/clean-code";
 
 interface TypeOfResult {
   name: string;
@@ -36,18 +35,18 @@ interface TypeOfResult {
 }
 
 const RequestComponent = () => {
-  const state = useCleanFetching<TypeOfResult>();
+  const request = useRequest<TypeOfResult>();
 
   const loadUser = useCallback(async () => {
     // highlight-next-line
-    state.on.init();
+    request.on.init();
     try {
       const result = await Mock<TypeOfResult>();
       // highlight-next-line
-      state.on.success(result);
+      request.on.success(result);
     } catch (e) {
       // highlight-next-line
-      state.on.error(e?.message);
+      request.on.error(e?.message);
     }
   }, []);
 
@@ -56,14 +55,14 @@ const RequestComponent = () => {
   }, []);
 
   // highlight-next-line
-  if (state.isFetching) {
+  if (request.isFetching) {
     return <UIComponentForLoading />;
   }
   // highlight-next-line
-  if (state.hasError) {
-    return <UIComponentForError error={state.errorObject} />;
+  if (request.hasError) {
+    return <UIComponentForError error={request.errorObject} />;
   }
-  return <div>{state.data?.name}</div>;
+  return <div>{request.data?.name}</div>;
 };
 ```
 

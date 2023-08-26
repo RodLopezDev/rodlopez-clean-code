@@ -4,10 +4,8 @@ sidebar_position: 1
 
 # Getting Started
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Descubre **@rodlopez/clean-code en menos de 10 minutos**.
 
-## Introducing to clean code
+## @rodlopez/clean-code
 
-Get started by **creating a new site**.
-
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+**@rodlopez/clean-code**. es un conjunto de utilidades que te permiten desarrollar un códingo más limpio mientras trabajas con ReactJS o NextJS, este busca reducir el acoplamiento entre tu proyecto y librerías terceras que se ocupen en el mismo, garantizando facilidad en migraciones de versión o entre librerías con la misma función.

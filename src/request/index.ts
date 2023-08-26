@@ -6,9 +6,9 @@ export type {
   SingleMiddleware,
   SuccessMiddleware,
   ErrorMiddleware,
-  default as FetchingStateMiddleware,
-} from "./types/FetchingStateMiddleware";
+  default as RequestStateMiddleware,
+} from "./types/RequestStateMiddleware";
 
+export { default as useRequest } from "./factory/useRequest";
+export { default as RequestComponent } from "./factory/RequestComponent";
 export { default as AsyncRequestRender } from "./factory/AsyncRequestRender";
-export { default as FetchingComponent } from "./factory/FetchingComponent";
-export { default as useCleanFetching } from "./factory/useCleanFetching";

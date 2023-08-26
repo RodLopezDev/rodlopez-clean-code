@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import useCleanFetching from "./useCleanFetching";
+import useRequest from "./useRequest";
 import AsyncRequestRender from "./AsyncRequestRender";
 
 interface Props<ENTITY, ERROR = string> {
@@ -7,18 +7,18 @@ interface Props<ENTITY, ERROR = string> {
   render: (entity: ENTITY) => ReactElement;
 }
 
-const FetchingComponent = function FetchingComponent<ENTITY, ERROR = string>(
+const RequestComponent = function RequestComponent<ENTITY, ERROR = string>(
   props: Props<ENTITY, ERROR>
 ) {
   const { render, error } = props;
-  const state = useCleanFetching<ENTITY, ERROR>({
+  const request = useRequest<ENTITY, ERROR>({
     isFetching: true,
   });
   const defaultError = () => <></>;
   return (
     <AsyncRequestRender<ENTITY, ERROR>
       initialFetching
-      state={state}
+      request={request}
       Render={render}
       RenderError={error || defaultError}
       RenderLoading={<div>Cargando...</div>}
@@ -26,4 +26,4 @@ const FetchingComponent = function FetchingComponent<ENTITY, ERROR = string>(
   );
 };
 
-export default FetchingComponent;
+export default RequestComponent;

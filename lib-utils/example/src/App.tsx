@@ -2,6 +2,7 @@ import AsyncronusLoading from "./use-cases/AsyncronusLoading";
 import ErrorCase from "./use-cases/ErrorCase";
 import FetchingWithHookComponent from "./use-cases/FetchingWithHook";
 import FetchingWithHookAndTracingComponent from "./use-cases/FetchingWithHookAndTracing";
+import FetchingWithMethod from "./use-cases/FetchingWithMethod";
 import FetchingWithTracingAndUIRender from "./use-cases/FetchingWithTracingAndUIRender";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       />
       <AsyncronusLoading delayTime={500} pokemonName="charizard" />
       <ErrorCase delayTime={3000} pokemonName="bad-name" />
+      <FetchingWithMethod delayTime={1000} pokemonName="squirtle" />
     </>
   );
 }

@@ -5,23 +5,25 @@ import {
 } from "../utils/middlewares";
 import EntityState from "../types/EntityState";
 import RequestState from "../types/RequestState";
-import FetchingStateMiddleware from "../types/FetchingStateMiddleware";
+import RequestStateMiddleware from "../types/RequestStateMiddleware";
 
 import useTraceableState from "../../state/useTraceableState";
+import { useEffect } from "react";
 
 interface Props<ENTITY, ERROR = string> {
+  method?: Promise<ENTITY>;
   isFetching?: boolean;
-  middlewares?: FetchingStateMiddleware<ENTITY, ERROR>;
+  middlewares?: RequestStateMiddleware<ENTITY, ERROR>;
 }
 
-const useCleanFetching = function useCleanFetching<ENTITY, ERROR = string>(
+const useRequest = function useRequest<ENTITY, ERROR = string>(
   props: Props<ENTITY, ERROR> = {}
 ): RequestState<ENTITY, ERROR> {
-  const { isFetching, middlewares } = props;
+  const { isFetching, method, middlewares } = props;
 
   const [state, setState] = useTraceableState<EntityState<ENTITY, ERROR>>({
     data: null,
-    isFetching: isFetching || false,
+    isFetching: !!method ? true : isFetching || false,
     isReady: false,
     hasError: false,
     errorObject: "" as ERROR,
@@ -107,6 +109,12 @@ const useCleanFetching = function useCleanFetching<ENTITY, ERROR = string>(
     }
   };
 
+  useEffect(() => {
+    if (method) {
+      traceAsync(method);
+    }
+  }, []);
+
   return {
     ...state,
     traceAsync,
@@ -119,4 +127,4 @@ const useCleanFetching = function useCleanFetching<ENTITY, ERROR = string>(
   };
 };
 
-export default useCleanFetching;
+export default useRequest;

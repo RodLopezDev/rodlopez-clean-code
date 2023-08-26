@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect } from "react";
-import useCleanFetching from "../../../../src/fetching/factory/useCleanFetching";
+import { useRequest } from "../../../../src/";
 
 import { delay } from "./utils";
 import { Pokemon } from "../Pokemon";
@@ -15,7 +15,7 @@ const FetchingWithHookAndTracingComponent: FC<Props> = ({
   delayTime,
   pokemonName,
 }) => {
-  const request = useCleanFetching<Pokemon>({ isFetching: true });
+  const request = useRequest<Pokemon>({ isFetching: true });
 
   const handlePokemon = useCallback(async () => {
     await delay(delayTime || 0);
