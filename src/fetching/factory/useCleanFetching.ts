@@ -88,9 +88,25 @@ const useCleanFetching = function useCleanFetching<ENTITY, ERROR = string>(
     );
   };
 
+  const defaultgetError = (e: unknown) => (e as any)?.message || ("" as ERROR);
+
+  const traceAsync = async (
+    promise: Promise<ENTITY>,
+    getError: (e: unknown) => ERROR = defaultgetError
+  ) => {
+    init();
+    try {
+      const result = await promise;
+      success(result);
+    } catch (e: unknown) {
+      error(getError(e));
+    }
+  };
+
   return {
     ...state,
-    on: {
+    traceAsync,
+    methods: {
       init,
       success,
       error,
