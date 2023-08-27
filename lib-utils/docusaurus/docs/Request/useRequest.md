@@ -18,7 +18,7 @@ const MyRequestComponent = () => {
   });
   return (
     <AsyncRequestRender
-      state={state}
+      request={request}
       RenderLoading={<MyLoadingUIMock />}
       Render={(user) => <MyUserUIMock />}
       RenderError={(errorObject) => <MyErrorUIMock error={errorObject} />}

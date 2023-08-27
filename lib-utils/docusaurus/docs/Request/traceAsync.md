@@ -8,8 +8,7 @@ Abstrae el seguimiento de la request y recibe como segundo parametro la promesa 
 
 ```tsx title="RequestComponent.tsx"
 import {
-  traceAsync,
-  useCleanFetching,
+  useRequest,
   AsyncRequestRender,
 } from "@rodlopez/clean-code";
 
@@ -19,21 +18,30 @@ interface TypeOfResult {
 }
 
 const RequestComponent = () => {
-  const state = useCleanFetching<TypeOfResult, any>();
+  const request = useRequest<TypeOfResult, any>();
 
   const mockPromise = async (): Promise<TypeOfResult> => {...};
 
   useEffect(() => {
+    // to do something
     // highlight-next-line
-    state.traceAsync(mockPromise);
+    request.traceAsync(mockPromise());
+    // to do something
   }, []);
 
-  return <AsyncRequestRender state={state} />;
+  return (
+    <AsyncRequestRender
+      request={request}
+      RenderLoading={<MyLoadingUIMock />}
+      Render={(user) => <MyUserUIMock />}
+      RenderError={(errorObject) => <MyErrorUIMock error={errorObject} />}
+    />
+  );
 };
 ```
 
 :::caution Importante
 
-El segundo genérico recibido por el hook **useCleanFetching** representa el tipado del objeto de error que se recibe, al usar traceAsync lo recomendable es ocupar `any` o de preferencia `unknown`
+El segundo genérico recibido por el hook **traceAsync** representa el tipado del objeto de error que se recibe, al usar traceAsync lo recomendable es ocupar `any` o de preferencia `unknown`
 
 :::

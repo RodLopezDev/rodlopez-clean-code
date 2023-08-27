@@ -35,7 +35,46 @@ const MyComponent = () => {
 export default MyComponent;
 ```
 
-:::warning Importante
+:::info Importante
 
-Este componente no incluye funciones de feedback en caso de un error al realizarse la request. Usar solo como HOC para aquellos procesos que **no requieren reintento**.
+Este componente incluye funciones de feedback en caso de un error al realizarse la request.
 :::
+
+```tsx title="RequestComponent.tsx"
+import { RequestComponent } from "@rodlopez/clean-code";
+
+interface User {
+  name: string;
+  email: string;
+}
+
+class Repository {
+  async getUser() {
+    return { ...mock };
+  }
+}
+
+const MyComponent = () => {
+  const repository = new Repository();
+  return (
+    <RequestComponent<User>
+      method={repository.getUser()}
+      loading={<div>Cargando...</div>}
+      render={(user: User, reload) => (
+        <div>
+          <button onClick={reload}>Actualizar</button>
+          {user?.name}
+        </div>
+      )}
+      error={(error: string, reload) => (
+        <div>
+          Error: {error}
+          <button onClick={reload}>Reintentar</button>
+        </div>
+      )}
+    />
+  );
+};
+
+export default MyComponent;
+```

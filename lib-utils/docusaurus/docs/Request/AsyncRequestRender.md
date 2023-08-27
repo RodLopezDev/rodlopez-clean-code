@@ -7,17 +7,24 @@ sidebar_position: 3
 Componente que abstrae todo el comportamiento de renderizado del estado de la request.
 
 ```tsx title="RequestComponent.tsx"
-import { useCleanFetching, AsyncRequestRender } from "@rodlopez/clean-code";
+import { useRequest, AsyncRequestRender } from "@rodlopez/clean-code";
 
-interface TypeOfResult {
+interface IUser {
   name: string;
   email: string;
 }
 
 const RequestComponent = () => {
-  const state = useCleanFetching<TypeOfResult>();
+  const request = useRequest<IUser>({ method: mockPromise });
   // highlight-next-line
-  return <AsyncRequestRender state={state} />;
+  return (
+    <AsyncRequestRender
+      request={request}
+      RenderLoading={<MyLoadingUIMock />}
+      Render={(user) => <MyUserUIMock />}
+      RenderError={(errorObject) => <MyErrorUIMock error={errorObject} />}
+    />
+  );
 };
 ```
 

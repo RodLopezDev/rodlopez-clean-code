@@ -9,7 +9,7 @@ El hook **useCleanFetching** admite una serie de middlewares que se ejecutan jun
 Todos estos son opcionales y se pueden ocupar de acuerdo a sus necesidades.
 
 ```tsx title="RequestComponent.tsx"
-import { useCleanFetching } from "@rodlopez/clean-code";
+import { useRequest } from "@rodlopez/clean-code";
 
 interface TypeOfResult {
   name: string;
@@ -17,7 +17,7 @@ interface TypeOfResult {
 }
 
 const RequestComponent = () => {
-  const state = useCleanFetching<TypeOfResult>({
+  const request = useRequest<TypeOfResult>({
     // highlight-next-line
     middlewares: {
       init: () => {
@@ -37,14 +37,14 @@ const RequestComponent = () => {
   .
   .
   .
-  return <div>{state.data?.name}</div>;
+  return <div>{request.data?.name}</div>;
 };
 ```
 
 Estos middlewareas tambien admiten arreglos
 
 ```tsx title="RequestComponent.tsx"
-import { useCleanFetching } from "@rodlopez/clean-code";
+import { useRequest } from "@rodlopez/clean-code";
 
 interface TypeOfResult {
   name: string;
@@ -52,7 +52,7 @@ interface TypeOfResult {
 }
 
 const RequestComponent = () => {
-  const state = useCleanFetching<TypeOfResult>({
+  const request = useRequest<TypeOfResult>({
     middlewares: {
       // highlight-next-line
       success: [
@@ -74,6 +74,6 @@ const RequestComponent = () => {
   .
   .
   .
-  return <div>{state.data?.name}</div>;
+  return <div>{request.data?.name}</div>;
 };
 ```
