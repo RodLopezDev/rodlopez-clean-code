@@ -27,7 +27,7 @@ const ErrorCaseWithComponent: FC<Props> = ({ delayTime, pokemonName }) => {
   }, []);
 
   return (
-    <RequestComponent<Pokemon>
+    <RequestComponent<Pokemon, { message: string }>
       method={handlePokemon}
       loading={<LoadingUI />}
       error={(error, reload) => {
@@ -35,9 +35,12 @@ const ErrorCaseWithComponent: FC<Props> = ({ delayTime, pokemonName }) => {
         useEffect(() => {
           value.current = pokemonName;
         }, []);
-        return <ErrorUI message={error} retry={reload} />;
+        return <ErrorUI message={error.message} retry={reload} />;
       }}
       render={(pk) => <PokemonUI pokemon={pk} strategy="Async loading" />}
+      getError={(error: unknown) => ({
+        message: (error as { message: string })?.message,
+      })}
     />
   );
 };

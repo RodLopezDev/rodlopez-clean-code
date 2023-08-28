@@ -7,6 +7,7 @@ interface Props<ENTITY, ERROR = string> {
   render: (entity: ENTITY, reload: () => Promise<void>) => ReactElement;
   loading?: ReactElement;
   error?: (errorObject: ERROR, reload: () => Promise<void>) => ReactElement;
+  getError?: (e: unknown) => ERROR;
 }
 
 const RequestComponent = function RequestComponent<ENTITY, ERROR = string>(
@@ -15,10 +16,15 @@ const RequestComponent = function RequestComponent<ENTITY, ERROR = string>(
   const { render, error, method, loading } = props;
   const request = useRequest<ENTITY, ERROR>({
     method: method(),
+    getError: props?.getError,
   });
   const defaultComponent = () => <></>;
   const onReload = () => {
-    return request.traceAsync(method());
+    try {
+      return request.traceAsync(method(), props?.getError);
+    } catch (e) {
+      return Promise.resolve();
+    }
   };
   return (
     <AsyncRequestRender<ENTITY, ERROR>

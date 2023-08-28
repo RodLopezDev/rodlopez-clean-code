@@ -9,7 +9,7 @@ import FetchingWithTracingAndUIRender from "./use-cases/FetchingWithTracingAndUI
 function App() {
   return (
     <>
-      <FetchingWithHookComponent delayTime={1000} pokemonName="pikachu" />
+      {/* <FetchingWithHookComponent delayTime={1000} pokemonName="pikachu" />
       <FetchingWithHookAndTracingComponent
         delayTime={2000}
         pokemonName="charmander"
@@ -19,9 +19,9 @@ function App() {
         pokemonName="dragonite"
       />
       <AsyncronusLoading delayTime={500} pokemonName="charizard" />
-      <ErrorCase delayTime={3000} pokemonName="bad-name" />
-      <ErrorCaseWithComponent delayTime={2000} pokemonName="charmileon" />
-      <FetchingWithMethod delayTime={1000} pokemonName="squirtle" />
+      <ErrorCase delayTime={3000} pokemonName="bad-name" /> */}
+      <ErrorCaseWithComponent delayTime={2000} pokemonName="mew" />
+      {/* <FetchingWithMethod delayTime={1000} pokemonName="squirtle" /> */}
     </>
   );
 }

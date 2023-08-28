@@ -15,6 +15,7 @@ interface BaseProp<ENTITY, ERROR = string> {
   isFetching?: boolean;
   method?: Promise<ENTITY>;
   middlewares?: RequestStateMiddleware<ENTITY, ERROR>;
+  getError?: (e: unknown) => ERROR;
 }
 
 const useRequest = function useRequest<ENTITY, ERROR = string>(
@@ -91,6 +92,8 @@ const useRequest = function useRequest<ENTITY, ERROR = string>(
     );
   };
 
+  const defaultGetError = (e: unknown) => (e as any)?.message || ("" as ERROR);
+
   const traceAsync = async (
     promise: Promise<ENTITY>,
     getError?: (e: unknown) => ERROR
@@ -100,19 +103,14 @@ const useRequest = function useRequest<ENTITY, ERROR = string>(
       const result = await promise;
       success(result);
     } catch (e: unknown) {
-      if (getError) {
-        error(getError(e));
-      } else {
-        const defaultGetError = (e: unknown) =>
-          (e as any)?.message || ("" as ERROR);
-        error(defaultGetError(e));
-      }
+      const errorObject = getError?.(e) || defaultGetError(e);
+      error(errorObject);
     }
   };
 
   useEffect(() => {
     if (props.method) {
-      traceAsync(props.method);
+      traceAsync(props.method, props?.getError || defaultGetError);
     }
   }, []);
 
