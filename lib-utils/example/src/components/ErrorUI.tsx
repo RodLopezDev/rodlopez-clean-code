@@ -3,9 +3,10 @@ import BaseBox from "./BaseBox";
 
 interface Props {
   message: string;
+  retry?: () => Promise<void>;
 }
 
-const ErrorUI: FC<Props> = ({ message }) => {
+const ErrorUI: FC<Props> = ({ message, retry }) => {
   return (
     <BaseBox>
       <div
@@ -23,6 +24,7 @@ const ErrorUI: FC<Props> = ({ message }) => {
           <div>Detail: {message}</div>
         </div>
       </div>
+      {retry ? <button onClick={retry}>Re-intenrar</button> : null}
     </BaseBox>
   );
 };
