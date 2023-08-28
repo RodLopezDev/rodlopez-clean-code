@@ -15,13 +15,13 @@ const RequestComponent = function RequestComponent<ENTITY, ERROR = string>(
 ) {
   const { render, error, method, loading } = props;
   const request = useRequest<ENTITY, ERROR>({
-    method: method(),
+    method,
     getError: props?.getError,
   });
   const defaultComponent = () => <></>;
   const onReload = () => {
     try {
-      return request.traceAsync(method(), props?.getError);
+      return request.traceAsync(method, props?.getError);
     } catch (e) {
       return Promise.resolve();
     }

@@ -13,7 +13,7 @@ import RequestStateMiddleware from "../../types/RequestStateMiddleware";
 
 interface BaseProp<ENTITY, ERROR = string> {
   isFetching?: boolean;
-  method?: Promise<ENTITY>;
+  method?: () => Promise<ENTITY>;
   middlewares?: RequestStateMiddleware<ENTITY, ERROR>;
   getError?: (e: unknown) => ERROR;
 }
@@ -95,12 +95,12 @@ const useRequest = function useRequest<ENTITY, ERROR = string>(
   const defaultGetError = (e: unknown) => (e as any)?.message || ("" as ERROR);
 
   const traceAsync = async (
-    promise: Promise<ENTITY>,
+    promise: () => Promise<ENTITY>,
     getError?: (e: unknown) => ERROR
   ) => {
     init();
     try {
-      const result = await promise;
+      const result = await promise();
       success(result);
     } catch (e: unknown) {
       const errorObject = getError?.(e) || defaultGetError(e);

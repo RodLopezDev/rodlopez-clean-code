@@ -5,7 +5,7 @@ interface RequestState<ENTITY, ERROR = string>
   extends EntityState<ENTITY, ERROR> {
   methods: MethodState<ENTITY, ERROR>;
   traceAsync: (
-    promise: Promise<ENTITY>,
+    promise: () => Promise<ENTITY>,
     getError?: (e: unknown) => ERROR
   ) => Promise<void>;
 }
