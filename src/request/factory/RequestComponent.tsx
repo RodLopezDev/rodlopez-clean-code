@@ -3,7 +3,7 @@ import useRequest from "./useRequest";
 import AsyncRequestRender from "./AsyncRequestRender";
 
 interface Props<ENTITY, ERROR = string> {
-  method: Promise<ENTITY>;
+  method: () => Promise<ENTITY>;
   render: (entity: ENTITY, reload: () => Promise<void>) => ReactElement;
   loading?: ReactElement;
   error?: (errorObject: ERROR, reload: () => Promise<void>) => ReactElement;
@@ -14,10 +14,12 @@ const RequestComponent = function RequestComponent<ENTITY, ERROR = string>(
 ) {
   const { render, error, method, loading } = props;
   const request = useRequest<ENTITY, ERROR>({
-    method,
+    method: method(),
   });
   const defaultComponent = () => <></>;
-  const onReload = () => request.traceAsync(method);
+  const onReload = () => {
+    return request.traceAsync(method());
+  };
   return (
     <AsyncRequestRender<ENTITY, ERROR>
       initialFetching

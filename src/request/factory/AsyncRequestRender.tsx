@@ -13,27 +13,19 @@ interface Props<ENTITY, ERROR = string> {
 const AsyncRequestRender = function AsyncRequestRender<ENTITY, ERROR = string>(
   props: Props<ENTITY, ERROR>
 ) {
-  const {
-    request,
-    Render,
-    RenderError,
-    RenderLoading,
-    RenderNone,
-    initialFetching,
-  } = props;
-  if (request.isFetching) {
-    return RenderLoading;
+  if (props?.request.isFetching) {
+    return props?.RenderLoading;
   }
-  if (request.hasError) {
-    return RenderError(request.errorObject);
+  if (props?.request.hasError) {
+    return props?.RenderError(props?.request.errorObject);
   }
-  if (!request.data) {
-    if (!!initialFetching) {
+  if (!props?.request.data) {
+    if (!!props?.initialFetching) {
       throw new Error("ERROR_PROCESSING");
     }
-    return RenderNone ?? RenderLoading;
+    return props?.RenderNone ?? props?.RenderLoading;
   }
-  return Render(request.data);
+  return props?.Render(props?.request.data);
 };
 
 export default AsyncRequestRender;
