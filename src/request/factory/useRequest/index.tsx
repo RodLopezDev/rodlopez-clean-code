@@ -32,11 +32,11 @@ const useRequest = function useRequest<ENTITY, ERROR = string>(
   });
 
   const initMiddleware = generateSigleMiddleware(middlewares?.init);
-  const successMiddleware = generateErrorMiddleware<ENTITY, ERROR>(
-    middlewares?.error
-  );
-  const errorMiddleware = generateSuccessMiddleware<ENTITY, ERROR>(
+  const successMiddleware = generateSuccessMiddleware<ENTITY, ERROR>(
     middlewares?.success
+  );
+  const errorMiddleware = generateErrorMiddleware<ENTITY, ERROR>(
+    middlewares?.error
   );
   const resetMiddleware = generateSigleMiddleware(middlewares?.reset);
 
