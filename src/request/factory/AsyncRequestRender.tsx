@@ -20,9 +20,6 @@ const AsyncRequestRender = function AsyncRequestRender<ENTITY, ERROR = string>(
     return props?.RenderError(props?.request.errorObject);
   }
   if (!props?.request.data) {
-    if (!!props?.initialFetching) {
-      return props?.RenderLoading;
-    }
     return props?.RenderNone ?? props?.RenderLoading;
   }
   return props?.Render(props?.request.data);
