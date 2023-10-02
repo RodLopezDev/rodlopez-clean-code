@@ -21,7 +21,7 @@ const AsyncRequestRender = function AsyncRequestRender<ENTITY, ERROR = string>(
   }
   if (!props?.request.data) {
     if (!!props?.initialFetching) {
-      throw new Error("ERROR_PROCESSING");
+      return props?.RenderLoading;
     }
     return props?.RenderNone ?? props?.RenderLoading;
   }
