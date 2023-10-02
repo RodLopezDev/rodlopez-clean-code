@@ -6,6 +6,7 @@ interface Props<ENTITY, ERROR = string> {
   method: () => Promise<ENTITY>;
   render: (entity: ENTITY, reload: () => Promise<void>) => ReactElement;
   loading?: ReactElement;
+  none?: ReactElement;
   error?: (errorObject: ERROR, reload: () => Promise<void>) => ReactElement;
   getError?: (e: unknown) => ERROR;
 }
@@ -30,6 +31,7 @@ const RequestComponent = function RequestComponent<ENTITY, ERROR = string>(
     <AsyncRequestRender<ENTITY, ERROR>
       initialFetching
       request={request}
+      RenderNone={props.none}
       Render={(entity) => render(entity, onReload)}
       RenderError={(errorObject) =>
         error?.(errorObject, onReload) || defaultComponent()
