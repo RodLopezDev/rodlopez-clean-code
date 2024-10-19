@@ -24,7 +24,7 @@ const ErrorUI: FC<Props> = ({ message, retry }) => {
           <div>Detail: {message}</div>
         </div>
       </div>
-      {retry ? <button onClick={retry}>Re-intenrar</button> : null}
+      {retry ? <button onClick={retry}>Re-intentar</button> : null}
     </BaseBox>
   );
 };

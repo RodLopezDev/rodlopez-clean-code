@@ -26,3 +26,7 @@ export default Component;
 ## Documentation
 
 See [https://rodlopezdev.github.io/rodlopez-clean-code](https://rodlopezdev.github.io/rodlopez-clean-code/)
+
+## NPM Package
+
+See [@rodlopez/clean-code](https://www.npmjs.com/package/@rodlopez/clean-code/)

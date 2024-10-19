@@ -28,7 +28,7 @@ const ErrorCase: FC<Props> = ({ delayTime, pokemonName }) => {
   }, []);
 
   useEffect(() => {
-    request.traceAsync(handlePokemon());
+    request.traceAsync(handlePokemon);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

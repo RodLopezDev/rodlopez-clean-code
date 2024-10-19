@@ -26,7 +26,7 @@ const AsyncronusLoading: FC<Props> = ({ delayTime, pokemonName }) => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      request.traceAsync(handlePokemon());
+      request.traceAsync(handlePokemon);
     }, 5000);
     return () => {
       clearTimeout(timeout);
